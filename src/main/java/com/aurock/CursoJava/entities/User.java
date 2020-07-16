@@ -7,15 +7,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+@Entity //Permite o mapeamento do class com a entidade no banco de dados
 public class User implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id 
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Id //Mapea a variável para ser o id da tabela
+	@GeneratedValue(strategy= GenerationType.IDENTITY) //define como autoincremental no banco de dados
 	private Long id;
+	
 	private String name;
 	private String email;
 	private String phone;
