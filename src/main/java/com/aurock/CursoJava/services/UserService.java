@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.aurock.CursoJava.entities.User;
 import com.aurock.CursoJava.repositories.UserRepository;
 
-@Service
+@Service //Permite mapear a classe para ser da camada service 
 public class UserService {
 	
 	@Autowired
