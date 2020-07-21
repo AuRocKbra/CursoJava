@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.aurock.CursoJava.entities.enuns.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -34,16 +35,19 @@ public class Order implements Serializable{
 	private Instant moment;
 	
 	
-	@ManyToOne //Permite mapear o relaionamento entre as entidade, no caso muitos Order por client
+	@ManyToOne //Permite mapear o relacionamento entre as entidade, no caso muitos Order por client
 	@JoinColumn(name="clientId") //Permite definir o nome da coluna referente a chave estrangeira
 	private User client;
 	
+	private Integer orderStatus;
+	
 	public Order() {}
 
-	public Order(Long id, Instant moment, User client) {
+	public Order(Long id, Instant moment, User client,OrderStatus orderStatus) {
 		this.id = id;
 		this.moment = moment;
 		this.client = client;
+		setOrderStatus(orderStatus);
 	}
 
 	public Long getId() {
@@ -68,6 +72,16 @@ public class Order implements Serializable{
 
 	public void setClient(User client) {
 		this.client = client;
+	}
+
+	public OrderStatus getOrderStatus() {
+		return OrderStatus.valueOf(orderStatus);
+	}
+
+	public void setOrderStatus(OrderStatus orderStatus) {
+		if(orderStatus != null) {
+			this.orderStatus = orderStatus.getCode();
+		}
 	}
 
 	@Override
