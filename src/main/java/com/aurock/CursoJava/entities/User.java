@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity //Permite o mapeamento do class com a entidade no banco de dados
 @Table(name="tb_user")//permite definir um nome para a tabela referente a entidade
 public class User implements Serializable{
@@ -27,6 +29,10 @@ public class User implements Serializable{
 	private String phone;
 	private String password;
 	
+	@JsonIgnore 
+	/* Para evitar que haja looping infinito nas requisições de entidade com relacionamento, insere-se a notação acima em uma das
+	 * entidades relacionadas, evitando uma chamada ciclica de atributos.  
+	 * */
 	@OneToMany(mappedBy = "client")
 	private List<Order> orders = new ArrayList<>();
 	

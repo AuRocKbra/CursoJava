@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name="tb_order")
 /* Foi necessário definir um nome para a tabela desta entidade pois a palavra "order" é uma palavra reservada
@@ -24,7 +26,13 @@ public class Order implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT")
+	/*
+	 * Permite definir como será o formato apresentado no json
+	 * */
 	private Instant moment;
+	
 	
 	@ManyToOne //Permite mapear o relaionamento entre as entidade, no caso muitos Order por client
 	@JoinColumn(name="clientId") //Permite definir o nome da coluna referente a chave estrangeira
