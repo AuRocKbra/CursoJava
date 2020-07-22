@@ -13,7 +13,7 @@ import com.aurock.CursoJava.repositories.CategoryRepository;
 public class CategoryService {
 	
 	@Autowired
-	public CategoryRepository categoryRepository;
+	private CategoryRepository categoryRepository;
 	
 	public List<Category> findAll(){
 		return categoryRepository.findAll();
