@@ -10,7 +10,7 @@ import com.aurock.CursoJava.entities.Order;
 import com.aurock.CursoJava.entities.Product;
 
 @Embeddable //permite determinar que está será uma classe auxiliar de chave composta
-public class OrdemItemPK implements Serializable{
+public class OrderItemPK implements Serializable{
 	
 	/**
 	 * 
@@ -53,7 +53,7 @@ public class OrdemItemPK implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		OrdemItemPK other = (OrdemItemPK) obj;
+		OrderItemPK other = (OrderItemPK) obj;
 		if (order == null) {
 			if (other.order != null)
 				return false;
