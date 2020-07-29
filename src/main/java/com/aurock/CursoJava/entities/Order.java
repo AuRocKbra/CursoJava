@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.aurock.CursoJava.entities.enuns.OrderStatus;
@@ -45,7 +47,15 @@ public class Order implements Serializable{
 	private Integer orderStatus;
 	
 	@OneToMany(mappedBy = "id.order")
-	private Set<OrderItem> items = new HashSet<>();	
+	private Set<OrderItem> items = new HashSet<>();
+	
+	/*
+	 * Como a classe pagamento depende da classe pedido para existir, o atributo que faz referencia a classe pagamento recebe a 
+	 * notação OneToOne(mappedBy="x", cascade = CascadeType.All) onde x será o nome do atributo na classe pagamento que faz 
+	 * referencia a esta classe e o CascadeType.All permite determinar que o valor entre pedido e pagamento seja o mesmo.
+	 * */
+	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+	private Payment payment;
 	
 	public Order() {}
 
@@ -90,6 +100,14 @@ public class Order implements Serializable{
 		}
 	}
 	
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+
 	public Set<OrderItem> getItems(){
 		return items;
 	}
