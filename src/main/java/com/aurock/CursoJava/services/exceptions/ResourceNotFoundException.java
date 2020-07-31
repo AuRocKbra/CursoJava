@@ -8,6 +8,6 @@ public class ResourceNotFoundException extends RuntimeException{
 	private static final long serialVersionUID = 1L;
 	
 	public ResourceNotFoundException(Object id) {
-		super("Não foi possível encotrar o recurso de id ="+id);
+		super("Não foi possível encontrar o recurso de id ="+id);
 	}
 }
